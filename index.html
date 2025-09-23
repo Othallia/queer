@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prismatik - Wear Your Story</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="main-nav">
+            <a href="index.html" class="logo">PRI<span class="glitch" data-text="A">SMA</span>TIK</a>
+            <ul class="nav-links">
+                <li><a href="#products">Shop</a></li>
+                <li><a href="#site-footer">About Us</a></li>
+            </ul>
+            <div class="nav-icons">
+                <div class="search-container">
+                    <input type="text" id="search-input" class="search-input" placeholder="Cari t-shirt, pin...">
+                    <button id="search-btn" class="search-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </button>
+                </div>
+                <button id="open-cart-btn" class="cart-button">
+                    🛒
+                    <span id="cart-count" class="cart-count">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-text">
+                <h1>YOUR STORY, YOUR RULES.</h1>
+                <p>Koleksi pakaian dan aksesori untuk merayakan setiap spektrum identitasmu. Ekspresif, berani, dan otentik.</p>
+                <a href="#products" class="cta-button">LIHAT KOLEKSI</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://i.pinimg.com/736x/84/0a/42/840a423737e3d92c603363b40367fa20.jpg" alt="Seorang model dengan gaya ekspresif">
+            </div>
+        </section>
+
+        <section id="products" class="featured-products">
+            <h2>KATALOG KAMI</h2>
+            <div class="product-grid"></div>
+        </section>
+    </main>
+
+    <div id="product-detail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal-btn">&times;</span>
+            <div class="modal-body">
+                <img id="modal-product-image" class="modal-image" src="" alt="Detail Produk">
+                <div class="modal-details">
+                    <h2 id="modal-product-name">Nama Produk</h2>
+                    <p id="modal-product-price" class="modal-price">Rp 0</p>
+                    <p id="modal-product-description">Deskripsi produk akan muncul di sini.</p>
+                    
+                    <div class="options-group">
+                        <label>Ukuran:</label>
+                        <div id="modal-product-sizes" class="options-container"></div>
+                    </div>
+                    
+                    <div class="options-group">
+                        <label>Warna:</label>
+                        <div id="modal-product-colors" class="options-container"></div>
+                    </div>
+                    
+                    <button id="modal-add-to-cart-btn" class="btn btn-primary">Tambah ke Keranjang</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer" class="site-footer">
+        <div class="footer-content">
+            <h3>Tentang Prismatik</h3>
+            <p class="footer-description">
+                Prismatik lahir dari keinginan untuk menciptakan ruang di mana setiap individu dapat mengekspresikan identitas unik mereka dengan bangga. Kami percaya bahwa fashion adalah kanvas, dan setiap orang berhak melukis cerita mereka sendiri. Selamat datang di komunitas kami, di mana setiap warna diri Anda dirayakan.
+            </p>
+            <div class="social-media">
+                <div class="social-item">
+                    <a href="https://www.instagram.com/wnjelv?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" title="Instagram">
+                        <svg width="32" height="32" viewBox="0 0 24 24"><defs><radialGradient id="insta-gradient" cx="0.3" cy="1" r="1"><stop offset="0" stop-color="#FFD600"/><stop offset="0.5" stop-color="#FF007A"/><stop offset="1" stop-color="#833AB4"/></radialGradient></defs><path fill="url(#insta-gradient)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.07-1.645-.07-4.85s.012-3.585.07-4.85c.149-3.227 1.664-4.771 4.919-4.919A118.75 118.75 0 0112 2.163zm0 1.8a9.6 9.6 0 00-4.632.067C5.002 4.24 3.44 5.804 3.242 8.242a98.83 98.83 0 00-.067 4.632v.25c0 3.106.012 3.433.067 4.632.2 2.438 1.764 4.002 4.242 4.242.99.045 1.52.067 4.632.067h.25c3.106 0 3.642-.022 4.632-.067 2.478-.24 4.042-1.804 4.242-4.242.055-1.2.067-1.526.067-4.632v-.25c0-3.106-.012-3.642-.067-4.632-.2-2.438-1.764-4.002-4.242-4.242a98.83 98.83 0 00-4.632-.067h-.25zm0 4.632A3.375 3.375 0 1012 15.34a3.375 3.375 0 000-6.75zm0 1.8a1.575 1.575 0 110 3.15 1.575 1.575 0 010-3.15zM16.95 6.3a1.125 1.125 0 100 2.25 1.125 1.125 0 000-2.25z"/></svg>
+                    </a>
+                    <span>Instagram</span>
+                </div>
+                <div class="social-item">
+                    <a href="https://www.tiktok.com/@bluelvrr?_t=ZS-8zxLwnUysx6&_r=1" target="_blank" title="TikTok">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M12.525.02c1.31-.02 2.61-.01 3.91.02.08 0 .14.02.2.04.07.03.13.06.19.1.07.05.13.1.2.16.28.2.49.46.63.76.04.09.08.18.11.28.02.09.03.18.04.28.01.11.02.22.02.33v8.59c0 .1-.01.2-.01.3-.01.1-.02.2-.04.29-.02.1-.04.19-.07.28-.03.09-.07.17-.11.25-.29.57-.72.99-1.28 1.25-.09.04-.18.08-.28.11-.09.03-.19.05-.28.07-.1.02-.21.03-.32.04-1.3.04-2.6.04-3.9.03s-2.6-.01-3.9-.03c-.11-.01-.22-.02-.32-.04-.1-.02-.19-.04-.28-.07-.1-.03-.19-.07-.28-.11-.56-.26-.99-.68-1.25-1.25-.04-.08-.08-.16-.11-.25-.03-.09-.05-.18-.07-.28-.02-.1-.03-.2-.04-.29-.01-.1-.01-.2-.01-.3V5.42c0-.1.01-.2.01-.3.01-.1.02-.2.04-.29.02-.1.04-.19.07-.28.03-.09.07-.17.11-.25.29-.57.72-.99 1.28-1.25.09-.04.18-.08.28-.11.09-.03.19-.05-.28-.07.1-.02.21-.03.32-.04 1.3-.03 2.6-.04 3.9-.02s2.6.01 3.9.02zM16.6 5.82s.51.5 0 0c-1.4 1.4-1.4 2.8-1.4 4.9v.1c0 2.1 0 3.5.7 4.2.7.7 2.12.7 4.22.7 1.4 0 2.8 0 4.2-.7.7-.35.7-.7.7-1.4v-4.2c0-2.1.35-3.5-.7-4.2-.7-.7-2.1-.7-3.5-.7h-.35c-2.45 0-3.15.7-4.2 1.4z"/></svg>
+                    </a>
+                    <span>TikTok</span>
+                </div>
+                <div class="social-item">
+                    <a href="https://wa.me/6289653013256" target="_blank" title="WhatsApp">
+                        <svg width="32" height="32" viewBox="0 0 24 24"><path fill="#25D366" d="M19.78 14.39c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-1.13-.97-1.89-2.17-2.22-2.71-.33-.54-.04-.81.22-1.04.25-.23.56-.58.85-.86.29-.28.44-.48.59-.78.15-.3.08-.56 0-.71s-1.03-2.48-1.42-3.39c-.39-.91-.78-1.03-1.07-1.05-.29-.02-.64-.02-1-.02s-.98.15-1.48.72c-.5.58-1.93 1.89-1.93 4.6 0 2.71 1.98 5.33 2.25 5.68.27.35 3.86 5.92 9.49 8.35 5.63 2.43 5.63 1.62 6.65 1.52.92-.08 2.87-1.18 3.27-2.31.39-1.13.39-2.08.29-2.31-.1-.23-.35-.35-.64-.5z"/></svg>
+                    </a>
+                    <span>WhatsApp</span>
+                </div>
+            </div>
+            <p class="footer-copyright">© 2025 Prismatik. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <div id="shopping-cart" class="shopping-cart">
+        <div class="cart-header">
+            <h3>Keranjang Anda</h3>
+            <button id="close-cart-btn" class="close-cart-btn">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total:</strong>
+                <span id="cart-total-price">Rp 0</span>
+            </div>
+            <button class="btn btn-primary checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const products = [
+                {
+                    id: 1,
+                    name: 'T-shirt "Sky Flower Tee"',
+                    price: 195000,
+                    imageSrc: 'https://i.pinimg.com/1200x/6c/62/4e/6c624e2ca04fcb2254c901aabc2fdf1d.jpg',
+                    stock: 12,
+                    description: 'Kaos katun premium dengan desain bunga langit yang artistik. Nyaman dipakai sehari-hari dan membuatmu tampil beda.',
+                    sizes: ['S', 'M', 'L', 'XL'],
+                    colors: ['Putih', 'Biru Muda']
+                },
+                {
+                    id: 2,
+                    name: 'Enamel Pin "Pride Flag Pin"',
+                    price: 25000,
+                    imageSrc: 'https://i.pinimg.com/736x/12/c8/2d/12c82df1fde650031242cd9898081b05.jpg',
+                    stock: 50,
+                    description: 'Tunjukkan identitasmu dengan bangga. Pin enamel berkualitas tinggi yang cocok untuk tas, jaket, atau topi.',
+                    sizes: [],
+                    colors: ['Gold', 'Silver']
+                },
+                {
+                    id: 3,
+                    name: 'Tote Bag "Rainbow canvas tote bag"',
+                    price: 89000,
+                    imageSrc: 'https://i.pinimg.com/736x/08/67/41/086741278ab6f0bf824fa3613657857f.jpg',
+                    stock: 25,
+                    description: 'Bawa semua barangmu dengan gaya. Tote bag kanvas tebal dengan ilustrasi pelangi yang ceria dan tahan lama.',
+                    sizes: [],
+                    colors: []
+                },
+                {
+                    id: 4,
+                    name: 'Stiker "Vinyl Stiker Queer Set"',
+                    price: 30000,
+                    imageSrc: 'https://i.pinimg.com/736x/02/b7/41/02b741a3a36309544ea0879acc02f7c0.jpg',
+                    stock: 150,
+                    description: 'Satu set stiker vinyl berkualitas tinggi, tahan air dan cuaca. Tempel di laptop, botol minum, atau di mana saja kamu suka!',
+                    sizes: [],
+                    colors: []
+                },
+                {
+                    id: 5,
+                    name: 'Beach Outfit "Casual Shorts pants"',
+                    price: 150000,
+                    imageSrc: 'https://i.pinimg.com/1200x/13/36/2c/13362c833335366085d04e619f55625f.jpg',
+                    stock: 8,
+                    description: 'Celana pendek santai dengan bahan ringan dan cepat kering. Sempurna untuk hari yang panas atau liburan ke pantai.',
+                    sizes: ['S', 'M', 'L'],
+                    colors: ['Biru', 'Hitam', 'Merah']
+                },
+                {
+                    id: 6,
+                    name: 'Boots "Classic Boots"',
+                    price: 380000,
+                    imageSrc: 'https://i.pinimg.com/1200x/49/c3/ad/49c3add5f2b8ebdb12f6c58d87cec182.jpg',
+                    stock: 5,
+                    description: 'Tampil berani dengan sepatu boot yang kokoh dan penuh gaya. Dibuat dengan material berkualitas untuk daya tahan maksimal.',
+                    sizes: ['38', '39', '40', '41', '42'],
+                    colors: ['Hitam']
+                },
+                {
+                    id: 7,
+                    name: 'Ring "Shoe Ring"',
+                    price: 10000,
+                    imageSrc: 'https://i.pinimg.com/1200x/27/50/d0/2750d0c8d12a00db1068bea4f11b315e.jpg',
+                    stock: 20,
+                    description: 'Tambahkan sentuhan metalik yang edgy pada sepatumu. Cincin aksen ini dirancang khusus untuk dipasang pada tali sepatu boot.',
+                    sizes: [],
+                    colors: ['Silver', 'Gunmetal Black', 'Gold', 'Blue']
+                },
+                {
+                    id: 8,
+                    name: 'Cardigan "Knit Cardigan"',
+                    price: 280000,
+                    imageSrc: 'https://i.pinimg.com/736x/f8/c3/58/f8c35883ac42006624afdd6f1ed7a8c6.jpg',
+                    stock: 15,
+                    description: 'Tetap hangat dan stylish dengan kardigan rajut yang lembut ini. Desainnya yang versatile cocok untuk berbagai kesempatan.',
+                    sizes: ['S/M', 'L/XL'],
+                    colors: ['Pink/Blue', 'Monochrome']
+                },
+                {
+                    id: 9,
+                    name: 'Backpack "Simple Backpack"',
+                    price: 1300000,
+                    imageSrc: 'https://i.pinimg.com/1200x/fe/2f/ec/fe2fec9541c3a6e5d5d777c2e22a5486.jpg',
+                    stock: 3,
+                    description: 'Ransel nyaman, ringan dan memiliki model yang simple sehingga bisa dikenakan untuk kegiatan apapun.',
+                    sizes: [],
+                    colors: ['Black', 'White']
+                },
+                {
+                    id: 10,
+                    name: 'Hat "Sun Hat"',
+                    price: 99000,
+                    imageSrc: 'https://i.pinimg.com/1200x/85/93/73/859373bf90d0023f816907ec7c79a836.jpg',
+                    stock: 8,
+                    description: 'Topi dengan model nyaman di kepala, dan bisa melindungi kamu dari panasnya sinar matahari di luar sana',
+                    sizes: [],
+                    colors: ['White', 'Beige', 'Brown', 'Sky Blue', 'Purple', 'Pink', 'Green']
+                },
+                {
+                    id: 11,
+                    name: 'Neckle "Woman Love Woman Neckle"',
+                    price: 190000,
+                    imageSrc: 'https://i.pinimg.com/736x/d5/2a/12/d52a120924c96b503703239e7cf62a94.jpg',
+                    stock: 6,
+                    description: 'Kalung indah menampilkan simbol cinta antara wanita. Terbuat dari bahan berkualitas tinggi, cocok untuk dipakai sehari-hari atau acara spesial.',
+                    sizes: [],
+                    colors: ['Gold', 'White']
+                },
+                {
+                    id: 12,
+                    name: 'Chains "Couple chains"',
+                    price: 40000,
+                    imageSrc: 'https://i.pinimg.com/1200x/82/f2/60/82f2605c1ea8fc9d191f5fa67fb11f5c.jpg',
+                    stock: 40,
+                    description: 'Gantungan couple yang manis dan bermakna. cocok untuk kamu dan pasanganmu sebagai simbol ikatan kalian.',
+                    sizes: [],
+                    colors: ['Green', 'Pink']
+                }
+            ];
+
+            const nomorWhatsApp = '6289653013256';
+            let cart = [];
+
+            const productGrid = document.querySelector('.product-grid');
+            const searchInput = document.getElementById('search-input');
+            const cartPanel = document.getElementById('shopping-cart');
+            const openCartBtn = document.getElementById('open-cart-btn');
+            const closeCartBtn = document.getElementById('close-cart-btn');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartCountEl = document.getElementById('cart-count');
+            const cartTotalEl = document.getElementById('cart-total-price');
+            const checkoutBtn = document.querySelector('.checkout-btn');
+            
+            const modal = document.getElementById('product-detail-modal');
+            const closeModalBtn = document.querySelector('.close-modal-btn');
+            const modalImage = document.getElementById('modal-product-image');
+            const modalName = document.getElementById('modal-product-name');
+            const modalPrice = document.getElementById('modal-product-price');
+            const modalDesc = document.getElementById('modal-product-description');
+            const modalSizes = document.getElementById('modal-product-sizes');
+            const modalColors = document.getElementById('modal-product-colors');
+            const modalAddToCartBtn = document.getElementById('modal-add-to-cart-btn');
+
+            function saveCartToLocalStorage() {
+                localStorage.setItem('prismatikCart', JSON.stringify(cart));
+            }
+
+            function loadCartFromLocalStorage() {
+                const savedCart = localStorage.getItem('prismatikCart');
+                if (savedCart) {
+                    cart = JSON.parse(savedCart);
+                }
+            }
+
+            function renderProducts(productsToRender) {
+                productGrid.innerHTML = '';
+                productsToRender.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card';
+                    productCard.dataset.productId = product.id;
+                    
+                    productCard.innerHTML = `
+                        <img class="product-image" src="${product.imageSrc}" alt="${product.name}">
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-price">Rp ${product.price.toLocaleString('id-ID')}</p>
+                        <div class="product-stock">Stok: ${product.stock}</div>
+                        <button class="btn btn-primary view-details-btn">Lihat Detail</button>
+                    `;
+                    productGrid.appendChild(productCard);
+                });
+            }
+
+            function openProductModal(productId) {
+                const product = products.find(p => p.id == productId);
+                if (!product) return;
+
+                modalImage.src = product.imageSrc;
+                modalName.textContent = product.name;
+                modalPrice.textContent = `Rp ${product.price.toLocaleString('id-ID')}`;
+                modalDesc.textContent = product.description;
+
+                modalSizes.innerHTML = '';
+                const sizesGroup = modalSizes.closest('.options-group');
+                if (product.sizes && product.sizes.length > 0) {
+                    sizesGroup.style.display = 'block';
+                    product.sizes.forEach(size => {
+                        const sizeBtn = document.createElement('button');
+                        sizeBtn.className = 'option-btn';
+                        sizeBtn.textContent = size;
+                        sizeBtn.dataset.size = size;
+                        modalSizes.appendChild(sizeBtn);
+                    });
+                    modalSizes.querySelector('.option-btn').classList.add('active');
+                } else {
+                    sizesGroup.style.display = 'none';
+                }
+
+                modalColors.innerHTML = '';
+                const colorsGroup = modalColors.closest('.options-group');
+                if (product.colors && product.colors.length > 0) {
+                    colorsGroup.style.display = 'block';
+                    product.colors.forEach(color => {
+                        const colorBtn = document.createElement('button');
+                        colorBtn.className = 'option-btn';
+                        colorBtn.textContent = color;
+                        colorBtn.dataset.color = color;
+                        modalColors.appendChild(colorBtn);
+                    });
+                    modalColors.querySelector('.option-btn').classList.add('active');
+                } else {
+                    colorsGroup.style.display = 'none';
+                }
+                
+                modalAddToCartBtn.dataset.productId = product.id;
+                modal.style.display = 'flex';
+            }
+
+            function addToCartFromModal() {
+                const productId = modalAddToCartBtn.dataset.productId;
+                const product = products.find(p => p.id == productId);
+
+                const selectedSizeEl = modalSizes.querySelector('.option-btn.active');
+                const selectedColorEl = modalColors.querySelector('.option-btn.active');
+
+                const size = selectedSizeEl ? selectedSizeEl.dataset.size : null;
+                const color = selectedColorEl ? selectedColorEl.dataset.color : null;
+                
+                const cartItemId = `${productId}-${size || 'none'}-${color || 'none'}`;
+                const existingItem = cart.find(item => item.cartId === cartItemId);
+                
+                if (existingItem) {
+                    existingItem.quantity++;
+                } else {
+                    cart.push({
+                        cartId: cartItemId,
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        quantity: 1,
+                        size: size,
+                        color: color
+                    });
+                }
+                
+                updateCartDisplay();
+                modal.style.display = 'none';
+            }
+
+            function updateCartDisplay() {
+                cartItemsContainer.innerHTML = '';
+                let total = 0;
+                let count = 0;
+
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = '<p class="empty-cart-message">Keranjang Anda kosong.</p>';
+                } else {
+                    cart.forEach(item => {
+                        const itemEl = document.createElement('div');
+                        itemEl.className = 'cart-item';
+                        
+                        let details = '';
+                        if (item.size) details += `<span>Ukuran: ${item.size}</span>`;
+                        if (item.color) details += `<span>Warna: ${item.color}</span>`;
+
+                        itemEl.innerHTML = `
+                            <div class="cart-item-info">
+                                <span class="item-name">${item.name}</span>
+                                <div class="item-details">${details}</div>
+                            </div>
+                            <div class="cart-item-actions">
+                                <span class="item-price">Rp ${(item.price * item.quantity).toLocaleString('id-ID')}</span>
+                                <div class="item-quantity">
+                                    <button class="quantity-btn" data-cartid="${item.cartId}" data-action="decrease">-</button>
+                                    <span>${item.quantity}</span>
+                                    <button class="quantity-btn" data-cartid="${item.cartId}" data-action="increase">+</button>
+                                </div>
+                            </div>
+                        `;
+                        cartItemsContainer.appendChild(itemEl);
+                        total += item.price * item.quantity;
+                        count += item.quantity;
+                    });
+                }
+                cartTotalEl.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+                cartCountEl.textContent = count;
+                cartCountEl.style.display = count > 0 ? 'flex' : 'none';
+
+                saveCartToLocalStorage();
+            }
+            
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const filteredProducts = products.filter(product => 
+                    product.name.toLowerCase().includes(searchTerm)
+                );
+                renderProducts(filteredProducts);
+            });
+
+            productGrid.addEventListener('click', (e) => {
+                const targetCard = e.target.closest('.product-card');
+                if (targetCard) {
+                    openProductModal(targetCard.dataset.productId);
+                }
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target.classList.contains('option-btn')) {
+                    const parentGroup = e.target.parentElement;
+                    parentGroup.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                    e.target.classList.add('active');
+                }
+            });
+            
+            closeModalBtn.addEventListener('click', () => modal.style.display = 'none');
+            modal.addEventListener('click', (e) => {
+                if(e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            modalAddToCartBtn.addEventListener('click', addToCartFromModal);
+            openCartBtn.addEventListener('click', () => cartPanel.classList.add('open'));
+            closeCartBtn.addEventListener('click', () => cartPanel.classList.remove('open'));
+
+            cartItemsContainer.addEventListener('click', (e) => {
+                if (!e.target.classList.contains('quantity-btn')) return;
+                const cartId = e.target.dataset.cartid;
+                const action = e.target.dataset.action;
+                const item = cart.find(i => i.cartId === cartId);
+                if (!item) return;
+
+                if (action === 'increase') {
+                    item.quantity++;
+                } else if (action === 'decrease') {
+                    item.quantity--;
+                }
+
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.cartId !== cartId);
+                }
+                updateCartDisplay();
+            });
+
+            checkoutBtn.addEventListener('click', () => {
+                if (cart.length === 0) {
+                    alert('Keranjang Anda masih kosong!');
+                    return;
+                }
+
+                let pesan = 'Halo Prismatik, saya mau pesan barang berikut:\n\n';
+                let totalBelanja = 0;
+
+                cart.forEach(item => {
+                    const subtotal = item.price * item.quantity;
+                    let detailPesanan = `- *${item.name}*`;
+                    if(item.size) detailPesanan += ` (Ukuran: ${item.size})`;
+                    if(item.color) detailPesanan += ` (Warna: ${item.color})`;
+                    
+                    pesan += `${detailPesanan}\n  Jumlah: ${item.quantity} x Rp ${item.price.toLocaleString('id-ID')}\n  Subtotal: Rp ${subtotal.toLocaleString('id-ID')}\n\n`;
+                    totalBelanja += subtotal;
+                });
+
+                pesan += `*Total Belanja: Rp ${totalBelanja.toLocaleString('id-ID')}*\n\nMohon info untuk langkah selanjutnya. Terima kasih!`;
+
+                const linkWhatsApp = `https://wa.me/${nomorWhatsApp}?text=${encodeURIComponent(pesan)}`;
+                window.open(linkWhatsApp, '_blank');
+            });
+
+            // Inisialisasi Aplikasi
+            loadCartFromLocalStorage();
+            renderProducts(products);
+            updateCartDisplay();
+        });
+    </script>
+
+</body>
+</html>
