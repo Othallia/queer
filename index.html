@@ -81,21 +81,21 @@
                 <div class="value-grid">
                     <div class="value-item">
                         <div class="value-icon">
-                            <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600" alt="Desain Eksklusif">
+                            <img src="https://i.pinimg.com/1200x/34/b7/b3/34b7b3109a49cb4a14fc266dfb6e97d1.jpg" alt="Desain Eksklusif">
                         </div>
                         <h3 class="value-item-title">Desain Eksklusif</h3>
                         <p class="value-item-desc">Setiap produk dirancang secara internal untuk merayakan identitas unik Anda, tidak akan Anda temukan di tempat lain.</p>
                     </div>
                     <div class="value-item">
                         <div class="value-icon">
-                            <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600" alt="Kualitas Premium">
+                            <img src="https://i.pinimg.com/1200x/d2/dd/62/d2dd62b46da9ea25bb2d15c63e538063.jpg" alt="Kualitas Premium">
                         </div>
                         <h3 class="value-item-title">Kualitas Premium</h3>
                         <p class="value-item-desc">Kami hanya menggunakan material pilihan yang nyaman dipakai, awet, dan ramah di kulit.</p>
                     </div>
                     <div class="value-item">
                         <div class="value-icon">
-                            <img src="https://images.unsplash.com/photo-1527187162927-6213c4115b9c?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600" alt="Mendukung Komunitas">
+                            <img src="https://i.pinimg.com/736x/1b/c1/1a/1bc11afb9c7ddea33eb60cd378c13cfa.jpg" alt="Mendukung Komunitas">
                         </div>
                         <h3 class="value-item-title">Mendukung Komunitas</h3>
                         <p class="value-item-desc">Setiap pembelian Anda turut mendukung ruang aman dan acara untuk komunitas kami berkembang.</p>
@@ -122,7 +122,16 @@
         <div class="modal-content">
             <span class="close-modal-btn">&times;</span>
             <div class="modal-body">
-                <img id="modal-product-image" class="modal-image" src="" alt="Detail Produk">
+                
+                <div class="slider-container">
+                    <div class="slider-wrapper">
+                    </div>
+                    <button id="prev-slide-btn" class="slider-btn prev">&lt;</button>
+                    <button id="next-slide-btn" class="slider-btn next">&gt;</button>
+                    <div class="dots-container">
+                    </div>
+                </div>
+
                 <div class="modal-details">
                     <h2 id="modal-product-name">Nama Produk</h2>
                     <p id="modal-product-price" class="modal-price">Rp 0</p>
@@ -192,81 +201,134 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </a>
 
-
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const products = [
                 {
                     id: 1, name: 'T-shirt "Sky Flower Tee"', category: 'Pakaian', price: 195000,
-                    imageSrc: 'https://i.pinimg.com/1200x/6c/62/4e/6c624e2ca04fcb2254c901aabc2fdf1d.jpg', stock: 12,
+                    defaultImage: 'https://i.pinimg.com/1200x/ca/bc/f7/cabcf7ad848850108afa5c333a6f13b0.jpg',
+                    images: [
+                        { color: 'Putih', src: 'https://i.pinimg.com/736x/33/f3/98/33f39891143eeb867eb1b844477643cc.jpg'},
+                        { color: 'Biru Muda', src: 'https://i.pinimg.com/1200x/1d/ae/bc/1daebcd9f24e889f4b02f3701ab40b27.jpg'}
+                    ],
+                    stock: 12,
                     description: 'Kaos katun premium dengan desain bunga langit yang artistik.',
                     sizes: ['S', 'M', 'L', 'XL'], colors: ['Putih', 'Biru Muda']
                 },
                 {
                     id: 2, name: 'Enamel Pin "Pride Flag Pin"', category: 'Aksesoris', price: 25000,
-                    imageSrc: 'https://i.pinimg.com/736x/12/c8/2d/12c82df1fde650031242cd9898081b05.jpg', stock: 50,
+                    defaultImage: 'https://i.pinimg.com/736x/12/c8/2d/12c82df1fde650031242cd9898081b05.jpg',
+                    images: [
+                        {color: 'Gold', src: 'https://i.pinimg.com/1200x/32/5f/56/325f565eb6f2ff6826cb9c351d478cc5.jpg'},
+                        {color: 'Silver', src: 'https://i.pinimg.com/1200x/1d/30/ef/1d30ef475fb318d19c6d79811608b49c.jpg'}
+                    ],
+                    stock: 50,
                     description: 'Tunjukkan identitasmu dengan bangga. Pin enamel berkualitas tinggi.',
                     sizes: [], colors: ['Gold', 'Silver']
                 },
                 {
                     id: 3, name: 'Tote Bag "Rainbow canvas tote bag"', category: 'Tas', price: 89000,
-                    imageSrc: 'https://i.pinimg.com/736x/08/67/41/086741278ab6f0bf824fa3613657857f.jpg', stock: 25,
+                    defaultImage: 'https://i.pinimg.com/736x/08/67/41/086741278ab6f0bf824fa3613657857f.jpg',
+                    images: [],
+                    stock: 25,
                     description: 'Bawa semua barangmu dengan gaya. Tote bag kanvas tebal dan tahan lama.',
                     sizes: [], colors: []
                 },
                 {
                     id: 4, name: 'Stiker "Vinyl Stiker Queer Set"', category: 'Aksesoris', price: 30000,
-                    imageSrc: 'https://i.pinimg.com/736x/02/b7/41/02b741a3a36309544ea0879acc02f7c0.jpg', stock: 150,
+                    defaultImage: 'https://i.pinimg.com/736x/02/b7/41/02b741a3a36309544ea0879acc02f7c0.jpg',
+                    images: [],
+                    stock: 150,
                     description: 'Satu set stiker vinyl berkualitas tinggi, tahan air dan cuaca.',
                     sizes: [], colors: []
                 },
                 {
                     id: 5, name: 'Beach Outfit "Casual Shorts pants"', category: 'Pakaian', price: 150000,
-                    imageSrc: 'https://i.pinimg.com/1200x/13/36/2c/13362c833335366085d04e619f55625f.jpg', stock: 8,
+                    defaultImage: 'https://i.pinimg.com/1200x/13/36/2c/13362c833335366085d04e619f55625f.jpg',
+                    images: [
+                        { color: 'Biru', src: 'https://i.pinimg.com/736x/e6/ae/ac/e6aeac8b779fe00c39303af06c784ea3.jpg' },
+                        { color: 'Hitam', src: 'https://i.pinimg.com/1200x/ec/9a/13/ec9a13d7430fb7874033f19a8947cc0a.jpg' },
+                        { color: 'Merah', src: 'https://i.pinimg.com/1200x/62/6f/ae/626fae495c98c6921c3dfba324a2077b.jpg' }
+                    ],
+                    stock: 8,
                     description: 'Celana pendek santai dengan bahan ringan dan cepat kering.',
                     sizes: ['S', 'M', 'L'], colors: ['Biru', 'Hitam', 'Merah']
                 },
                 {
                     id: 6, name: 'Boots "Classic Boots"', category: 'Pakaian', price: 380000,
-                    imageSrc: 'https://i.pinimg.com/1200x/49/c3/ad/49c3add5f2b8ebdb12f6c58d87cec182.jpg', stock: 5,
+                    defaultImage: 'https://i.pinimg.com/1200x/49/c3/ad/49c3add5f2b8ebdb12f6c58d87cec182.jpg',
+                    images: [],
+                    stock: 5,
                     description: 'Tampil berani dengan sepatu boot yang kokoh dan penuh gaya.',
                     sizes: ['38', '39', '40', '41', '42'], colors: ['Hitam']
                 },
                 {
                     id: 7, name: 'Ring "Shoe Ring"', category: 'Aksesoris', price: 10000,
-                    imageSrc: 'https://i.pinimg.com/1200x/27/50/d0/2750d0c8d12a00db1068bea4f11b315e.jpg', stock: 20,
+                    defaultImage: 'https://i.pinimg.com/1200x/27/50/d0/2750d0c8d12a00db1068bea4f11b315e.jpg',
+                    images: [],
+                    stock: 20,
                     description: 'Tambahkan sentuhan metalik yang edgy pada sepatumu.',
-                    sizes: [], colors: ['Silver', 'Gunmetal Black', 'Gold', 'Blue']
+                    sizes: [], colors: []
                 },
                 {
                     id: 8, name: 'Cardigan "Knit Cardigan"', category: 'Pakaian', price: 280000,
-                    imageSrc: 'https://i.pinimg.com/736x/f8/c3/58/f8c35883ac42006624afdd6f1ed7a8c6.jpg', stock: 15,
+                    defaultImage: 'https://i.pinimg.com/736x/f8/c3/58/f8c35883ac42006624afdd6f1ed7a8c6.jpg',
+                    images: [
+                        {color: 'Lesbian', src: 'https://i.pinimg.com/736x/fb/6e/c1/fb6ec1c0a1dcd5da272a634eb5096d6a.jpg'},
+                        {color: 'Transgender', src: 'https://i.pinimg.com/736x/bc/cd/cb/bccdcb6ba6737b9e3be905912364db03.jpg'},
+                        {color: 'Bisexual', src: 'https://i.pinimg.com/736x/f8/c3/58/f8c35883ac42006624afdd6f1ed7a8c6.jpg'},
+                        {color: 'Rainbow', src: 'https://i.pinimg.com/736x/46/fc/aa/46fcaa614cf2e1840bc45ca3fb354040.jpg'},
+                    ],
+                    stock: 15,
                     description: 'Tetap hangat dan stylish dengan kardigan rajut yang lembut ini.',
-                    sizes: ['S/M', 'L/XL'], colors: ['Pink/Blue', 'Monochrome']
+                    sizes: ['S/M', 'L/XL'], colors: ['Lesbian', 'Transgender', 'Bisexual', 'Rainbow']
                 },
                 {
                     id: 9, name: 'Backpack "Simple Backpack"', category: 'Tas', price: 1300000,
-                    imageSrc: 'https://i.pinimg.com/1200x/fe/2f/ec/fe2fec9541c3a6e5d5d777c2e22a5486.jpg', stock: 3,
+                    defaultImage: 'https://i.pinimg.com/1200x/fe/2f/ec/fe2fec9541c3a6e5d5d777c2e22a5486.jpg',
+                    images: [
+                        {color: 'Black', src: 'https://i.pinimg.com/1200x/67/54/4d/67544d5de0519548cfa657cd65f8bc1b.jpg'},
+                        {color: 'White', src: 'https://i.pinimg.com/1200x/2f/63/72/2f6372649595deee7cd4feb3a8cf4cc7.jpg'},
+                    ],
+                    stock: 3,
                     description: 'Ransel nyaman, ringan dan memiliki model yang simple.',
                     sizes: [], colors: ['Black', 'White']
                 },
                 {
                     id: 10, name: 'Hat "Sun Hat"', category: 'Aksesoris', price: 99000,
-                    imageSrc: 'https://i.pinimg.com/1200x/85/93/73/859373bf90d0023f816907ec7c79a836.jpg', stock: 8,
+                    defaultImage: 'https://i.pinimg.com/1200x/85/93/73/859373bf90d0023f816907ec7c79a836.jpg',
+                    images: [
+                        {color: 'White', src: 'https://i.pinimg.com/736x/72/36/41/723641663e829fe3b7b2e6df243c0417.jpg'},
+                        {color: 'Beige', src: 'https://i.pinimg.com/1200x/2c/b1/3d/2cb13de7e039be9abc3255a832944818.jpg'},
+                        {color: 'Sky Blue', src: 'https://i.pinimg.com/1200x/bf/be/dc/bfbedcfb9a0b188c02bf95e7d9fd6045.jpg'},
+                        {color: 'Pink', src: 'https://i.pinimg.com/736x/dd/b0/93/ddb0938834e4e3fa4f931d5f642ca3d8.jpg'},
+                    ],
+                    stock: 8,
                     description: 'Topi dengan model nyaman di kepala, melindungi dari sinar matahari.',
-                    sizes: [], colors: ['White', 'Beige', 'Brown', 'Sky Blue', 'Purple', 'Pink', 'Green']
+                    sizes: [], colors: ['White', 'Beige', 'Sky Blue', 'Pink',]
                 },
                 {
                     id: 11, name: 'Neckle "Woman Love Woman Neckle"', category: 'Aksesoris', price: 190000,
-                    imageSrc: 'https://i.pinimg.com/736x/d5/2a/12/d52a120924c96b503703239e7cf62a94.jpg', stock: 6,
+                    defaultImage: 'https://i.pinimg.com/736x/d5/2a/12/d52a120924c96b503703239e7cf62a94.jpg',
+                    images: [
+                        {color: 'Gold', src: 'https://i.pinimg.com/1200x/cc/fa/b2/ccfab269377726382931a3e110a74bb5.jpg'},
+                        {color: 'White', src: 'https://i.pinimg.com/1200x/ff/74/9d/ff749d4efda34437ec52e81d732d22ee.jpg'},
+                    ],
+                    stock: 6,
                     description: 'Kalung indah menampilkan simbol cinta antara wanita.',
                     sizes: [], colors: ['Gold', 'White']
                 },
                 {
                     id: 12, name: 'Chains "Couple chains"', category: 'Aksesoris', price: 40000,
-                    imageSrc: 'https://i.pinimg.com/1200x/82/f2/60/82f2605c1ea8fc9d191f5fa67fb11f5c.jpg', stock: 40,
+                    defaultImage: 'https://i.pinimg.com/1200x/82/f2/60/82f2605c1ea8fc9d191f5fa67fb11f5c.jpg',
+                    images: [
+                        {color: 'Green', src: 'https://i.pinimg.com/736x/76/e2/1e/76e21e2cfb990bfbc64f6106793fb91a.jpg'},
+                        {color: 'Pink', src: 'https://i.pinimg.com/736x/18/c9/ba/18c9bad25c78ddfe42597b694cd89551.jpg'},
+                        {color: 'Black', src: 'https://i.pinimg.com/736x/a6/83/b1/a683b14495553be57e7924668722f332.jpg'},
+                    ],
+                    stock: 40,
                     description: 'Gantungan couple yang manis dan bermakna.',
-                    sizes: [], colors: ['Green', 'Pink', 'Couple']
+                    sizes: [], colors: ['Green', 'Pink', 'Black']
                 }
             ];
 
@@ -284,7 +346,8 @@
             const checkoutBtn = document.querySelector('.checkout-btn');
             const modal = document.getElementById('product-detail-modal');
             const closeModalBtn = document.querySelector('.close-modal-btn');
-            const modalImage = document.getElementById('modal-product-image');
+            
+            const modalDetails = document.querySelector('.modal-details');
             const modalName = document.getElementById('modal-product-name');
             const modalPrice = document.getElementById('modal-product-price');
             const modalDesc = document.getElementById('modal-product-description');
@@ -295,6 +358,13 @@
             
             const backToTopBtn = document.getElementById('back-to-top-btn');
             const toastContainer = document.getElementById('toast-container');
+            
+            const sliderWrapper = document.querySelector('.slider-wrapper');
+            const dotsContainer = document.querySelector('.dots-container');
+            const prevSlideBtn = document.getElementById('prev-slide-btn');
+            const nextSlideBtn = document.getElementById('next-slide-btn');
+            let currentSlideIndex = 0;
+            let productImages = [];
 
             function showToast(message) {
                 const toast = document.createElement('div');
@@ -328,7 +398,7 @@
                     productCard.style.animationDelay = `${index * 50}ms`;
 
                     productCard.innerHTML = `
-                        <img class="product-image" src="${product.imageSrc}" alt="${product.name}">
+                        <img class="product-image" src="${product.defaultImage}" alt="${product.name}">
                         <h3 class="product-name">${product.name}</h3>
                         <p class="product-price">Rp ${product.price.toLocaleString('id-ID')}</p>
                         <div class="product-stock">Stok: ${product.stock}</div>
@@ -391,14 +461,34 @@
             function openProductModal(productId) {
                 const product = products.find(p => p.id == productId);
                 if (!product) return;
-                modalImage.src = product.imageSrc;
+
+                sliderWrapper.innerHTML = '';
+                dotsContainer.innerHTML = '';
+                productImages = (product.images && product.images.length > 0) ? product.images : [{ color: null, src: product.defaultImage }];
+
+                productImages.forEach((image, index) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'slide';
+                    slide.innerHTML = `<img src="${image.src}" alt="${product.name} - ${image.color || ''}">`;
+                    sliderWrapper.appendChild(slide);
+
+                    const dot = document.createElement('div');
+                    dot.className = 'dot';
+                    dot.dataset.index = index;
+                    dotsContainer.appendChild(dot);
+                });
+
+                currentSlideIndex = 0;
+                updateSlider();
+                
                 modalName.textContent = product.name;
                 modalPrice.textContent = `Rp ${product.price.toLocaleString('id-ID')}`;
                 modalDesc.textContent = product.description;
+                
                 modalSizes.innerHTML = '';
                 const sizesGroup = modalSizes.closest('.options-group');
                 if (product.sizes && product.sizes.length > 0) {
-                    sizesGroup.style.display = 'block';
+                    sizesGroup.style.display = 'flex';
                     product.sizes.forEach(size => {
                         const sizeBtn = document.createElement('button');
                         sizeBtn.className = 'option-btn';
@@ -410,10 +500,11 @@
                 } else {
                     sizesGroup.style.display = 'none';
                 }
+
                 modalColors.innerHTML = '';
                 const colorsGroup = modalColors.closest('.options-group');
                 if (product.colors && product.colors.length > 0) {
-                    colorsGroup.style.display = 'block';
+                    colorsGroup.style.display = 'flex';
                     product.colors.forEach(color => {
                         const colorBtn = document.createElement('button');
                         colorBtn.className = 'option-btn';
@@ -425,10 +516,49 @@
                 } else {
                     colorsGroup.style.display = 'none';
                 }
+
+                const colorButtons = modalColors.querySelectorAll('.option-btn');
+                colorButtons.forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const selectedColor = e.target.dataset.color;
+                        const imageIndex = productImages.findIndex(img => img.color === selectedColor);
+                        if (imageIndex !== -1) {
+                            currentSlideIndex = imageIndex;
+                            updateSlider();
+                        }
+                    });
+                });
+                
                 modalAddToCartBtn.dataset.productId = product.id;
                 modal.style.display = 'flex';
             }
             
+            function updateSlider() {
+                sliderWrapper.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+                
+                const dots = dotsContainer.querySelectorAll('.dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlideIndex);
+                });
+            }
+
+            prevSlideBtn.addEventListener('click', () => {
+                currentSlideIndex = (currentSlideIndex > 0) ? currentSlideIndex - 1 : productImages.length - 1;
+                updateSlider();
+            });
+
+            nextSlideBtn.addEventListener('click', () => {
+                currentSlideIndex = (currentSlideIndex < productImages.length - 1) ? currentSlideIndex + 1 : 0;
+                updateSlider();
+            });
+
+            dotsContainer.addEventListener('click', (e) => {
+                if(e.target.classList.contains('dot')) {
+                    currentSlideIndex = parseInt(e.target.dataset.index);
+                    updateSlider();
+                }
+            });
+
             function updateCartTotal() {
                 let total = 0;
                 const selectedItems = cart.filter(item => item.selected);
