@@ -1,12 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Syne:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;700&family=Syne:wght@700;800&display=swap');
 
 :root {
     --deep-space: #10172A;
     --cloud-white: #F0F4F8;
     --cyber-pink: #FF007F;
     --hyper-blue: #00C2FF;
+    --creamy-white: #F9F5F0; 
+    --dark-text: #3D3D3D;     
     --font-heading: 'Syne', sans-serif;
     --font-body: 'Poppins', sans-serif;
+    --font-elegant: 'Playfair Display', serif; 
 }
 
 html {
@@ -230,6 +233,68 @@ body {
 }
 
 /* ==================================================
+   BAGIAN KEUNGGULAN (VALUE PROPOSITION)
+   ================================================== */
+.value-proposition {
+    padding: 0 5%; 
+    margin-bottom: 80px;
+}
+
+.value-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    background-color: var(--creamy-white);
+    color: var(--dark-text);
+    border-radius: 20px;
+    padding: 60px 40px;
+    overflow: hidden;
+}
+
+.value-title {
+    font-family: var(--font-elegant);
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.value-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.value-item {
+    text-align: center;
+}
+
+.value-icon {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.value-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.value-item-title {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.value-item-desc {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.8;
+}
+
+/* ==================================================
    FILTER KATEGORI
    ================================================== */
 .category-filters {
@@ -287,7 +352,6 @@ body {
     margin: 0 auto;
 }
 
-/* [BARU] Keyframes untuk animasi fade-in kartu */
 @keyframes cardFadeIn {
     from {
         opacity: 0;
@@ -306,8 +370,8 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
-    opacity: 0; /* Mulai dari transparan untuk animasi */
-    animation: cardFadeIn 0.5s ease-out forwards; /* Terapkan animasi */
+    opacity: 0; 
+    animation: cardFadeIn 0.5s ease-out forwards;
 }
 
 .product-card:hover {
@@ -346,9 +410,8 @@ body {
     margin: 0 15px 15px 15px;
 }
 
-/* [BARU] Style untuk pesan jika produk kosong */
 .empty-message {
-    grid-column: 1 / -1; /* Memastikan pesan mengambil seluruh lebar grid */
+    grid-column: 1 / -1; 
     text-align: center;
     padding: 40px 20px;
     color: var(--cloud-white);
@@ -359,7 +422,6 @@ body {
     font-size: 24px;
     margin-bottom: 10px;
 }
-
 
 .btn {
     padding: 12px;
@@ -735,7 +797,6 @@ body {
 /* ==================================================
    RESPONSIVITAS (MEDIA QUERIES)
    ================================================== */
-
 @media (max-width: 768px) {
     .hero-section {
         flex-direction: column;
@@ -768,12 +829,28 @@ body {
         width: 100%;
         max-width: 400px;
     }
+
+    .value-grid {
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 20px;
+        scroll-snap-type: x mandatory; 
+        scroll-padding: 0 20px;
+    }
+
+    .value-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .value-item {
+        flex: 0 0 80%;
+        scroll-snap-align: center;
+    }
 }
 
 /* ==================================================
    MENU HAMBURGER & MOBILE NAV
    ================================================== */
-
 .hamburger-btn {
     display: none;
     background: none;
@@ -884,9 +961,8 @@ body {
 }
 
 /* ==================================================
-   FITUR TAMBAHAN (NOTIFIKASI, DLL) - [BARU]
+   FITUR TAMBAHAN (NOTIFIKASI, DLL)
    ================================================== */
-
 .toast-container {
     position: fixed;
     top: 20px;

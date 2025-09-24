@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -72,6 +72,35 @@
             </div>
             <div class="hero-image">
                 <img src="https://i.pinimg.com/736x/84/0a/42/840a423737e3d92c603363b40367fa20.jpg" alt="Seorang model dengan gaya ekspresif">
+            </div>
+        </section>
+
+        <section class="value-proposition">
+            <div class="value-container">
+                <h2 class="value-title">Why Prismatik?</h2>
+                <div class="value-grid">
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600" alt="Desain Eksklusif">
+                        </div>
+                        <h3 class="value-item-title">Desain Eksklusif</h3>
+                        <p class="value-item-desc">Setiap produk dirancang secara internal untuk merayakan identitas unik Anda, tidak akan Anda temukan di tempat lain.</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600" alt="Kualitas Premium">
+                        </div>
+                        <h3 class="value-item-title">Kualitas Premium</h3>
+                        <p class="value-item-desc">Kami hanya menggunakan material pilihan yang nyaman dipakai, awet, dan ramah di kulit.</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <img src="https://images.unsplash.com/photo-1527187162927-6213c4115b9c?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600" alt="Mendukung Komunitas">
+                        </div>
+                        <h3 class="value-item-title">Mendukung Komunitas</h3>
+                        <p class="value-item-desc">Setiap pembelian Anda turut mendukung ruang aman dan acara untuk komunitas kami berkembang.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -167,7 +196,6 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const products = [
-                // ... data produk Anda tetap sama, pastikan ada 'category'
                 {
                     id: 1, name: 'T-shirt "Sky Flower Tee"', category: 'Pakaian', price: 195000,
                     imageSrc: 'https://i.pinimg.com/1200x/6c/62/4e/6c624e2ca04fcb2254c901aabc2fdf1d.jpg', stock: 12,
@@ -245,7 +273,6 @@
             const nomorWhatsApp = '6289653013256';
             let cart = [];
 
-            // ... Definisi konstanta elemen lainnya (productGrid, dll) ...
             const productGrid = document.querySelector('.product-grid');
             const searchInput = document.getElementById('search-input');
             const cartPanel = document.getElementById('shopping-cart');
@@ -266,13 +293,9 @@
             const modalAddToCartBtn = document.getElementById('modal-add-to-cart-btn');
             const categoryFilters = document.getElementById('category-filters');
             
-            // [BARU] Definisi elemen untuk fitur baru
             const backToTopBtn = document.getElementById('back-to-top-btn');
             const toastContainer = document.getElementById('toast-container');
 
-
-            // ... Sisa kode Anda ...
-            // [BARU] Fungsi untuk menampilkan notifikasi
             function showToast(message) {
                 const toast = document.createElement('div');
                 toast.className = 'toast show';
@@ -282,12 +305,11 @@
                 setTimeout(() => {
                     toast.classList.remove('show');
                     toast.addEventListener('transitionend', () => toast.remove());
-                }, 3000); // Notifikasi hilang setelah 3 detik
+                }, 3000);
             }
             
-            // [DIUBAH] Fungsi renderProducts untuk menangani pesan kosong dan animasi
             function renderProducts(productsToRender) {
-                productGrid.innerHTML = ''; // Kosongkan grid dulu
+                productGrid.innerHTML = ''; 
 
                 if (productsToRender.length === 0) {
                     productGrid.innerHTML = `
@@ -296,14 +318,13 @@
                             <p>Coba gunakan kata kunci atau pilih kategori yang lain.</p>
                         </div>
                     `;
-                    return; // Hentikan fungsi jika tidak ada produk
+                    return; 
                 }
 
                 productsToRender.forEach((product, index) => {
                     const productCard = document.createElement('div');
                     productCard.className = 'product-card';
                     productCard.dataset.productId = product.id;
-                    // [BARU] Tambahkan delay animasi untuk efek berurutan
                     productCard.style.animationDelay = `${index * 50}ms`;
 
                     productCard.innerHTML = `
@@ -317,7 +338,6 @@
                 });
             }
             
-            // [DIUBAH] Fungsi addToCartFromModal untuk memanggil notifikasi
             function addToCartFromModal() {
                 const productId = modalAddToCartBtn.dataset.productId;
                 const product = products.find(p => p.id == productId);
@@ -340,12 +360,9 @@
                 
                 updateCartDisplay();
                 modal.style.display = 'none';
-
-                // [BARU] Panggil notifikasi setelah berhasil menambahkan
                 showToast(`<strong>${product.name}</strong><br>telah ditambahkan ke keranjang.`);
             }
 
-            // ... Sisa fungsi lainnya (updateCartTotal, updateCartDisplay, checkoutBtn listener, etc.) tetap sama seperti sebelumnya ...
             categoryFilters.addEventListener('click', (e) => {
                 if (e.target.classList.contains('filter-btn')) {
                     categoryFilters.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
@@ -560,7 +577,6 @@
                 cartPanel.classList.add('open');
             });
             
-            // [BARU] Event listener untuk tombol Back to Top
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 300) {
                     backToTopBtn.classList.add('show');
@@ -573,12 +589,10 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-
             loadCartFromLocalStorage();
             renderProducts(products);
             updateCartDisplay();
         });
     </script>
-
 </body>
 </html>
