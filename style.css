@@ -265,6 +265,8 @@ body {
 
 .value-item {
     text-align: center;
+    transition: all 0.3s ease-in-out; /* [BARU] Efek transisi halus */
+    cursor: pointer;                  /* [BARU] Mengubah kursor jadi tangan */
 }
 
 .value-icon {
