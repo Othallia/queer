@@ -709,13 +709,16 @@ body {
    RESPONSIVITAS (MEDIA QUERIES)
    ================================================== */
 
+/* --- INI KODE BARU --- */
 @media (max-width: 768px) {
     .hero-section {
         flex-direction: column;
         text-align: center;
         padding-top: 40px;
-        margin-top: 20px;
+        margin-top: 40px; /* <- UBAH NILAI INI */
     }
+    /* ... kode lainnya ... */
+}
 
     .hero-text h1 {
         font-size: 48px;
@@ -788,13 +791,16 @@ body {
     font-size: 20px;
 }
 
+/* --- INI KODE BARU --- */
 .close-mobile-nav-btn {
     background: none;
     border: none;
     color: white;
-    font-size: 36px;
-    font-weight: bold;
+    font-size: 40px;     /* Sedikit lebih besar */
     cursor: pointer;
+    padding: 15px;       /* Menambah AREA SENTUH di sekeliling 'X' */
+    line-height: 0.5;    /* Menyesuaikan posisi vertikal 'X' agar pas di tengah */
+    font-weight: normal; /* Membuat 'X' sedikit lebih ramping & modern */
 }
 
 .mobile-nav-content {
@@ -844,7 +850,7 @@ body {
     background-color: rgba(240, 244, 248, 0.1);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px) { 
     .nav-links {
         display: none;
     }
