@@ -287,6 +287,18 @@ body {
     margin: 0 auto;
 }
 
+/* [BARU] Keyframes untuk animasi fade-in kartu */
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .product-card {
     background-color: rgba(240, 244, 248, 0.05);
     border-radius: 8px;
@@ -294,6 +306,8 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
+    opacity: 0; /* Mulai dari transparan untuk animasi */
+    animation: cardFadeIn 0.5s ease-out forwards; /* Terapkan animasi */
 }
 
 .product-card:hover {
@@ -331,6 +345,21 @@ body {
     opacity: 0.7;
     margin: 0 15px 15px 15px;
 }
+
+/* [BARU] Style untuk pesan jika produk kosong */
+.empty-message {
+    grid-column: 1 / -1; /* Memastikan pesan mengambil seluruh lebar grid */
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--cloud-white);
+    opacity: 0.8;
+}
+.empty-message h3 {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
 
 .btn {
     padding: 12px;
@@ -545,21 +574,19 @@ body {
 }
 
 .cart-item {
-    display: flex; /* [DIUBAH] Menggunakan flexbox untuk alignment */
-    align-items: center; /* [BARU] Menyejajarkan checkbox dan detail item */
+    display: flex;
+    align-items: center;
     margin-bottom: 20px;
     gap: 15px;
 }
 
-/* [BARU] Styling untuk checkbox */
 .cart-item-checkbox {
     width: 20px;
     height: 20px;
     accent-color: var(--cyber-pink);
-    flex-shrink: 0; /* Mencegah checkbox mengecil */
+    flex-shrink: 0;
 }
 
-/* [BARU] Wrapper untuk detail agar bisa tumbuh */
 .cart-item-details-wrapper {
     display: flex;
     justify-content: space-between;
@@ -709,16 +736,13 @@ body {
    RESPONSIVITAS (MEDIA QUERIES)
    ================================================== */
 
-/* --- INI KODE BARU --- */
 @media (max-width: 768px) {
     .hero-section {
         flex-direction: column;
         text-align: center;
         padding-top: 40px;
-        margin-top: 40px; /* <- UBAH NILAI INI */
+        margin-top: 40px;
     }
-    /* ... kode lainnya ... */
-}
 
     .hero-text h1 {
         font-size: 48px;
@@ -791,16 +815,15 @@ body {
     font-size: 20px;
 }
 
-/* --- INI KODE BARU --- */
 .close-mobile-nav-btn {
     background: none;
     border: none;
     color: white;
-    font-size: 60px;     
+    font-size: 40px;
     cursor: pointer;
-    padding: 15px;       
-    line-height: 0.5;    
-    font-weight: normal; 
+    padding: 15px;
+    line-height: 0.5;
+    font-weight: normal;
 }
 
 .mobile-nav-content {
@@ -850,7 +873,7 @@ body {
     background-color: rgba(240, 244, 248, 0.1);
 }
 
-@media (max-width: 768px) { 
+@media (max-width: 768px) {
     .nav-links {
         display: none;
     }
@@ -858,4 +881,61 @@ body {
     .hamburger-btn {
         display: block;
     }
+}
+
+/* ==================================================
+   FITUR TAMBAHAN (NOTIFIKASI, DLL) - [BARU]
+   ================================================== */
+
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 4000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    background-color: var(--cloud-white);
+    color: var(--deep-space);
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.4s ease-in-out;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.back-to-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--cyber-pink);
+    color: var(--cloud-white);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.back-to-top-btn.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
