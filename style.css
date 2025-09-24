@@ -230,6 +230,42 @@ body {
 }
 
 /* ==================================================
+   FILTER KATEGORI (KODE BARU)
+   ================================================== */
+.category-filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap; /* Agar rapi di mobile */
+}
+
+.filter-btn {
+    background-color: transparent;
+    border: 1px solid rgba(240, 244, 248, 0.2);
+    color: var(--cloud-white);
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: var(--hyper-blue);
+    border-color: var(--hyper-blue);
+    color: var(--deep-space);
+}
+
+.filter-btn.active {
+    background-color: var(--cyber-pink);
+    border-color: var(--cyber-pink);
+    color: var(--cloud-white);
+    font-weight: 700;
+}
+
+/* ==================================================
    BAGIAN PRODUK
    ================================================== */
 .featured-products {
@@ -692,11 +728,11 @@ body {
 }
 
 /* ==================================================
-   MENU HAMBURGER & MOBILE NAV (KODE BARU)
+   MENU HAMBURGER & MOBILE NAV
    ================================================== */
 
 .hamburger-btn {
-    display: none; /* Sembunyi di desktop */
+    display: none;
     background: none;
     border: none;
     cursor: pointer;
@@ -759,7 +795,7 @@ body {
 }
 
 .mobile-search-container .search-input {
-    width: 100%; /* Selalu terlihat */
+    width: 100%;
     opacity: 1;
     padding: 0 5px;
 }
@@ -792,13 +828,12 @@ body {
     background-color: rgba(240, 244, 248, 0.1);
 }
 
-/* Modifikasi pada Media Query yang sudah ada */
 @media (max-width: 768px) {
     .nav-links {
-        display: none; /* Sembunyikan menu desktop */
+        display: none;
     }
 
     .hamburger-btn {
-        display: block; /* Tampilkan tombol hamburger */
+        display: block;
     }
 }

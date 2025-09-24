@@ -77,6 +77,14 @@
 
         <section id="products" class="featured-products">
             <h2>KATALOG KAMI</h2>
+            
+            <div id="category-filters" class="category-filters">
+                <button class="filter-btn active" data-category="all">Semua</button>
+                <button class="filter-btn" data-category="Pakaian">Pakaian</button>
+                <button class="filter-btn" data-category="Aksesoris">Aksesoris</button>
+                <button class="filter-btn" data-category="Tas">Tas</button>
+            </div>
+
             <div class="product-grid"></div>
         </section>
     </main>
@@ -90,17 +98,14 @@
                     <h2 id="modal-product-name">Nama Produk</h2>
                     <p id="modal-product-price" class="modal-price">Rp 0</p>
                     <p id="modal-product-description">Deskripsi produk akan muncul di sini.</p>
-                    
                     <div class="options-group">
                         <label>Ukuran:</label>
                         <div id="modal-product-sizes" class="options-container"></div>
                     </div>
-                    
                     <div class="options-group">
                         <label>Warna:</label>
                         <div id="modal-product-colors" class="options-container"></div>
                     </div>
-                    
                     <button id="modal-add-to-cart-btn" class="btn btn-primary">Tambah ke Keranjang</button>
                 </div>
             </div>
@@ -157,124 +162,76 @@
         document.addEventListener("DOMContentLoaded", () => {
             const products = [
                 {
-                    id: 1,
-                    name: 'T-shirt "Sky Flower Tee"',
-                    price: 195000,
-                    imageSrc: 'https://i.pinimg.com/1200x/6c/62/4e/6c624e2ca04fcb2254c901aabc2fdf1d.jpg',
-                    stock: 12,
-                    description: 'Kaos katun premium dengan desain bunga langit yang artistik. Nyaman dipakai sehari-hari dan membuatmu tampil beda.',
-                    sizes: ['S', 'M', 'L', 'XL'],
-                    colors: ['Putih', 'Biru Muda']
+                    id: 1, name: 'T-shirt "Sky Flower Tee"', category: 'Pakaian', price: 195000,
+                    imageSrc: 'https://i.pinimg.com/1200x/6c/62/4e/6c624e2ca04fcb2254c901aabc2fdf1d.jpg', stock: 12,
+                    description: 'Kaos katun premium dengan desain bunga langit yang artistik.',
+                    sizes: ['S', 'M', 'L', 'XL'], colors: ['Putih', 'Biru Muda']
                 },
                 {
-                    id: 2,
-                    name: 'Enamel Pin "Pride Flag Pin"',
-                    price: 25000,
-                    imageSrc: 'https://i.pinimg.com/736x/12/c8/2d/12c82df1fde650031242cd9898081b05.jpg',
-                    stock: 50,
-                    description: 'Tunjukkan identitasmu dengan bangga. Pin enamel berkualitas tinggi yang cocok untuk tas, jaket, atau topi.',
-                    sizes: [],
-                    colors: ['Gold', 'Silver']
+                    id: 2, name: 'Enamel Pin "Pride Flag Pin"', category: 'Aksesoris', price: 25000,
+                    imageSrc: 'https://i.pinimg.com/736x/12/c8/2d/12c82df1fde650031242cd9898081b05.jpg', stock: 50,
+                    description: 'Tunjukkan identitasmu dengan bangga. Pin enamel berkualitas tinggi.',
+                    sizes: [], colors: ['Gold', 'Silver']
                 },
                 {
-                    id: 3,
-                    name: 'Tote Bag "Rainbow canvas tote bag"',
-                    price: 89000,
-                    imageSrc: 'https://i.pinimg.com/736x/08/67/41/086741278ab6f0bf824fa3613657857f.jpg',
-                    stock: 25,
-                    description: 'Bawa semua barangmu dengan gaya. Tote bag kanvas tebal dengan ilustrasi pelangi yang ceria dan tahan lama.',
-                    sizes: [],
-                    colors: []
+                    id: 3, name: 'Tote Bag "Rainbow canvas tote bag"', category: 'Tas', price: 89000,
+                    imageSrc: 'https://i.pinimg.com/736x/08/67/41/086741278ab6f0bf824fa3613657857f.jpg', stock: 25,
+                    description: 'Bawa semua barangmu dengan gaya. Tote bag kanvas tebal dan tahan lama.',
+                    sizes: [], colors: []
                 },
                 {
-                    id: 4,
-                    name: 'Stiker "Vinyl Stiker Queer Set"',
-                    price: 30000,
-                    imageSrc: 'https://i.pinimg.com/736x/02/b7/41/02b741a3a36309544ea0879acc02f7c0.jpg',
-                    stock: 150,
-                    description: 'Satu set stiker vinyl berkualitas tinggi, tahan air dan cuaca. Tempel di laptop, botol minum, atau di mana saja kamu suka!',
-                    sizes: [],
-                    colors: []
+                    id: 4, name: 'Stiker "Vinyl Stiker Queer Set"', category: 'Aksesoris', price: 30000,
+                    imageSrc: 'https://i.pinimg.com/736x/02/b7/41/02b741a3a36309544ea0879acc02f7c0.jpg', stock: 150,
+                    description: 'Satu set stiker vinyl berkualitas tinggi, tahan air dan cuaca.',
+                    sizes: [], colors: []
                 },
                 {
-                    id: 5,
-                    name: 'Beach Outfit "Casual Shorts pants"',
-                    price: 150000,
-                    imageSrc: 'https://i.pinimg.com/1200x/13/36/2c/13362c833335366085d04e619f55625f.jpg',
-                    stock: 8,
-                    description: 'Celana pendek santai dengan bahan ringan dan cepat kering. Sempurna untuk hari yang panas atau liburan ke pantai.',
-                    sizes: ['S', 'M', 'L'],
-                    colors: ['Biru', 'Hitam', 'Merah']
+                    id: 5, name: 'Beach Outfit "Casual Shorts pants"', category: 'Pakaian', price: 150000,
+                    imageSrc: 'https://i.pinimg.com/1200x/13/36/2c/13362c833335366085d04e619f55625f.jpg', stock: 8,
+                    description: 'Celana pendek santai dengan bahan ringan dan cepat kering.',
+                    sizes: ['S', 'M', 'L'], colors: ['Biru', 'Hitam', 'Merah']
                 },
                 {
-                    id: 6,
-                    name: 'Boots "Classic Boots"',
-                    price: 380000,
-                    imageSrc: 'https://i.pinimg.com/1200x/49/c3/ad/49c3add5f2b8ebdb12f6c58d87cec182.jpg',
-                    stock: 5,
-                    description: 'Tampil berani dengan sepatu boot yang kokoh dan penuh gaya. Dibuat dengan material berkualitas untuk daya tahan maksimal.',
-                    sizes: ['38', '39', '40', '41', '42'],
-                    colors: ['Hitam']
+                    id: 6, name: 'Boots "Classic Boots"', category: 'Pakaian', price: 380000,
+                    imageSrc: 'https://i.pinimg.com/1200x/49/c3/ad/49c3add5f2b8ebdb12f6c58d87cec182.jpg', stock: 5,
+                    description: 'Tampil berani dengan sepatu boot yang kokoh dan penuh gaya.',
+                    sizes: ['38', '39', '40', '41', '42'], colors: ['Hitam']
                 },
                 {
-                    id: 7,
-                    name: 'Ring "Shoe Ring"',
-                    price: 10000,
-                    imageSrc: 'https://i.pinimg.com/1200x/27/50/d0/2750d0c8d12a00db1068bea4f11b315e.jpg',
-                    stock: 20,
-                    description: 'Tambahkan sentuhan metalik yang edgy pada sepatumu. Cincin aksen ini dirancang khusus untuk dipasang pada tali sepatu boot.',
-                    sizes: [],
-                    colors: ['Silver', 'Gunmetal Black', 'Gold', 'Blue']
+                    id: 7, name: 'Ring "Shoe Ring"', category: 'Aksesoris', price: 10000,
+                    imageSrc: 'https://i.pinimg.com/1200x/27/50/d0/2750d0c8d12a00db1068bea4f11b315e.jpg', stock: 20,
+                    description: 'Tambahkan sentuhan metalik yang edgy pada sepatumu.',
+                    sizes: [], colors: ['Silver', 'Gunmetal Black', 'Gold', 'Blue']
                 },
                 {
-                    id: 8,
-                    name: 'Cardigan "Knit Cardigan"',
-                    price: 280000,
-                    imageSrc: 'https://i.pinimg.com/736x/f8/c3/58/f8c35883ac42006624afdd6f1ed7a8c6.jpg',
-                    stock: 15,
-                    description: 'Tetap hangat dan stylish dengan kardigan rajut yang lembut ini. Desainnya yang versatile cocok untuk berbagai kesempatan.',
-                    sizes: ['S/M', 'L/XL'],
-                    colors: ['Pink/Blue', 'Monochrome']
+                    id: 8, name: 'Cardigan "Knit Cardigan"', category: 'Pakaian', price: 280000,
+                    imageSrc: 'https://i.pinimg.com/736x/f8/c3/58/f8c35883ac42006624afdd6f1ed7a8c6.jpg', stock: 15,
+                    description: 'Tetap hangat dan stylish dengan kardigan rajut yang lembut ini.',
+                    sizes: ['S/M', 'L/XL'], colors: ['Pink/Blue', 'Monochrome']
                 },
                 {
-                    id: 9,
-                    name: 'Backpack "Simple Backpack"',
-                    price: 1300000,
-                    imageSrc: 'https://i.pinimg.com/1200x/fe/2f/ec/fe2fec9541c3a6e5d5d777c2e22a5486.jpg',
-                    stock: 3,
-                    description: 'Ransel nyaman, ringan dan memiliki model yang simple sehingga bisa dikenakan untuk kegiatan apapun.',
-                    sizes: [],
-                    colors: ['Black', 'White']
+                    id: 9, name: 'Backpack "Simple Backpack"', category: 'Tas', price: 1300000,
+                    imageSrc: 'https://i.pinimg.com/1200x/fe/2f/ec/fe2fec9541c3a6e5d5d777c2e22a5486.jpg', stock: 3,
+                    description: 'Ransel nyaman, ringan dan memiliki model yang simple.',
+                    sizes: [], colors: ['Black', 'White']
                 },
                 {
-                    id: 10,
-                    name: 'Hat "Sun Hat"',
-                    price: 99000,
-                    imageSrc: 'https://i.pinimg.com/1200x/85/93/73/859373bf90d0023f816907ec7c79a836.jpg',
-                    stock: 8,
-                    description: 'Topi dengan model nyaman di kepala, dan bisa melindungi kamu dari panasnya sinar matahari di luar sana',
-                    sizes: [],
-                    colors: ['White', 'Beige', 'Brown', 'Sky Blue', 'Purple', 'Pink', 'Green']
+                    id: 10, name: 'Hat "Sun Hat"', category: 'Aksesoris', price: 99000,
+                    imageSrc: 'https://i.pinimg.com/1200x/85/93/73/859373bf90d0023f816907ec7c79a836.jpg', stock: 8,
+                    description: 'Topi dengan model nyaman di kepala, melindungi dari sinar matahari.',
+                    sizes: [], colors: ['White', 'Beige', 'Brown', 'Sky Blue', 'Purple', 'Pink', 'Green']
                 },
                 {
-                    id: 11,
-                    name: 'Neckle "Woman Love Woman Neckle"',
-                    price: 190000,
-                    imageSrc: 'https://i.pinimg.com/736x/d5/2a/12/d52a120924c96b503703239e7cf62a94.jpg',
-                    stock: 6,
-                    description: 'Kalung indah menampilkan simbol cinta antara wanita. Terbuat dari bahan berkualitas tinggi, cocok untuk dipakai sehari-hari atau acara spesial.',
-                    sizes: [],
-                    colors: ['Gold', 'White']
+                    id: 11, name: 'Neckle "Woman Love Woman Neckle"', category: 'Aksesoris', price: 190000,
+                    imageSrc: 'https://i.pinimg.com/736x/d5/2a/12/d52a120924c96b503703239e7cf62a94.jpg', stock: 6,
+                    description: 'Kalung indah menampilkan simbol cinta antara wanita.',
+                    sizes: [], colors: ['Gold', 'White']
                 },
                 {
-                    id: 12,
-                    name: 'Chains "Couple chains"',
-                    price: 40000,
-                    imageSrc: 'https://i.pinimg.com/1200x/82/f2/60/82f2605c1ea8fc9d191f5fa67fb11f5c.jpg',
-                    stock: 40,
-                    description: 'Gantungan couple yang manis dan bermakna. cocok untuk kamu dan pasanganmu sebagai simbol ikatan kalian.',
-                    sizes: [],
-                    colors: ['Green', 'Pink', 'Couple']
+                    id: 12, name: 'Chains "Couple chains"', category: 'Aksesoris', price: 40000,
+                    imageSrc: 'https://i.pinimg.com/1200x/82/f2/60/82f2605c1ea8fc9d191f5fa67fb11f5c.jpg', stock: 40,
+                    description: 'Gantungan couple yang manis dan bermakna.',
+                    sizes: [], colors: ['Green', 'Pink', 'Couple']
                 }
             ];
 
@@ -300,6 +257,27 @@
             const modalSizes = document.getElementById('modal-product-sizes');
             const modalColors = document.getElementById('modal-product-colors');
             const modalAddToCartBtn = document.getElementById('modal-add-to-cart-btn');
+
+            // [BARU] Logika untuk Filter Kategori
+            const categoryFilters = document.getElementById('category-filters');
+
+            categoryFilters.addEventListener('click', (e) => {
+                if (e.target.classList.contains('filter-btn')) {
+                    categoryFilters.querySelectorAll('.filter-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    e.target.classList.add('active');
+
+                    const selectedCategory = e.target.dataset.category;
+
+                    if (selectedCategory === 'all') {
+                        renderProducts(products);
+                    } else {
+                        const filteredProducts = products.filter(product => product.category === selectedCategory);
+                        renderProducts(filteredProducts);
+                    }
+                }
+            });
 
             function saveCartToLocalStorage() {
                 localStorage.setItem('prismatikCart', JSON.stringify(cart));
@@ -333,12 +311,10 @@
             function openProductModal(productId) {
                 const product = products.find(p => p.id == productId);
                 if (!product) return;
-
                 modalImage.src = product.imageSrc;
                 modalName.textContent = product.name;
                 modalPrice.textContent = `Rp ${product.price.toLocaleString('id-ID')}`;
                 modalDesc.textContent = product.description;
-
                 modalSizes.innerHTML = '';
                 const sizesGroup = modalSizes.closest('.options-group');
                 if (product.sizes && product.sizes.length > 0) {
@@ -354,7 +330,6 @@
                 } else {
                     sizesGroup.style.display = 'none';
                 }
-
                 modalColors.innerHTML = '';
                 const colorsGroup = modalColors.closest('.options-group');
                 if (product.colors && product.colors.length > 0) {
@@ -370,7 +345,6 @@
                 } else {
                     colorsGroup.style.display = 'none';
                 }
-                
                 modalAddToCartBtn.dataset.productId = product.id;
                 modal.style.display = 'flex';
             }
@@ -378,30 +352,20 @@
             function addToCartFromModal() {
                 const productId = modalAddToCartBtn.dataset.productId;
                 const product = products.find(p => p.id == productId);
-
                 const selectedSizeEl = modalSizes.querySelector('.option-btn.active');
                 const selectedColorEl = modalColors.querySelector('.option-btn.active');
-
                 const size = selectedSizeEl ? selectedSizeEl.dataset.size : null;
                 const color = selectedColorEl ? selectedColorEl.dataset.color : null;
-                
                 const cartItemId = `${productId}-${size || 'none'}-${color || 'none'}`;
                 const existingItem = cart.find(item => item.cartId === cartItemId);
-                
                 if (existingItem) {
                     existingItem.quantity++;
                 } else {
                     cart.push({
-                        cartId: cartItemId,
-                        id: product.id,
-                        name: product.name,
-                        price: product.price,
-                        quantity: 1,
-                        size: size,
-                        color: color
+                        cartId: cartItemId, id: product.id, name: product.name,
+                        price: product.price, quantity: 1, size: size, color: color
                     });
                 }
-                
                 updateCartDisplay();
                 modal.style.display = 'none';
             }
@@ -410,18 +374,15 @@
                 cartItemsContainer.innerHTML = '';
                 let total = 0;
                 let count = 0;
-
                 if (cart.length === 0) {
                     cartItemsContainer.innerHTML = '<p class="empty-cart-message">Keranjang Anda kosong.</p>';
                 } else {
                     cart.forEach(item => {
                         const itemEl = document.createElement('div');
                         itemEl.className = 'cart-item';
-                        
                         let details = '';
                         if (item.size) details += `<span>Ukuran: ${item.size}</span>`;
                         if (item.color) details += `<span>Warna: ${item.color}</span>`;
-
                         itemEl.innerHTML = `
                             <div class="cart-item-info">
                                 <span class="item-name">${item.name}</span>
@@ -434,8 +395,7 @@
                                     <span>${item.quantity}</span>
                                     <button class="quantity-btn" data-cartid="${item.cartId}" data-action="increase">+</button>
                                 </div>
-                            </div>
-                        `;
+                            </div>`;
                         cartItemsContainer.appendChild(itemEl);
                         total += item.price * item.quantity;
                         count += item.quantity;
@@ -444,26 +404,19 @@
                 cartTotalEl.textContent = `Rp ${total.toLocaleString('id-ID')}`;
                 cartCountEl.textContent = count;
                 cartCountEl.style.display = count > 0 ? 'flex' : 'none';
-
                 saveCartToLocalStorage();
-
-                // [BARU] Tambahan untuk update counter di menu mobile
                 mobileCartCount.textContent = count;
             }
             
             searchInput.addEventListener('input', (e) => {
                 const searchTerm = e.target.value.toLowerCase();
-                const filteredProducts = products.filter(product => 
-                    product.name.toLowerCase().includes(searchTerm)
-                );
+                const filteredProducts = products.filter(p => p.name.toLowerCase().includes(searchTerm));
                 renderProducts(filteredProducts);
             });
 
             productGrid.addEventListener('click', (e) => {
                 const targetCard = e.target.closest('.product-card');
-                if (targetCard) {
-                    openProductModal(targetCard.dataset.productId);
-                }
+                if (targetCard) openProductModal(targetCard.dataset.productId);
             });
 
             modal.addEventListener('click', (e) => {
@@ -476,9 +429,7 @@
             
             closeModalBtn.addEventListener('click', () => modal.style.display = 'none');
             modal.addEventListener('click', (e) => {
-                if(e.target === modal) {
-                    modal.style.display = 'none';
-                }
+                if(e.target === modal) modal.style.display = 'none';
             });
 
             modalAddToCartBtn.addEventListener('click', addToCartFromModal);
@@ -491,13 +442,11 @@
                 const action = e.target.dataset.action;
                 const item = cart.find(i => i.cartId === cartId);
                 if (!item) return;
-
                 if (action === 'increase') {
                     item.quantity++;
                 } else if (action === 'decrease') {
                     item.quantity--;
                 }
-
                 if (item.quantity <= 0) {
                     cart = cart.filter(i => i.cartId !== cartId);
                 }
@@ -509,27 +458,21 @@
                     alert('Keranjang Anda masih kosong!');
                     return;
                 }
-
                 let pesan = 'Halo Prismatik, saya mau pesan barang berikut:\n\n';
                 let totalBelanja = 0;
-
                 cart.forEach(item => {
                     const subtotal = item.price * item.quantity;
                     let detailPesanan = `- *${item.name}*`;
                     if(item.size) detailPesanan += ` (Ukuran: ${item.size})`;
                     if(item.color) detailPesanan += ` (Warna: ${item.color})`;
-                    
                     pesan += `${detailPesanan}\n   Jumlah: ${item.quantity} x Rp ${item.price.toLocaleString('id-ID')}\n   Subtotal: Rp ${subtotal.toLocaleString('id-ID')}\n\n`;
                     totalBelanja += subtotal;
                 });
-
                 pesan += `*Total Belanja: Rp ${totalBelanja.toLocaleString('id-ID')}*\n\nMohon info untuk langkah selanjutnya. Terima kasih!`;
-
                 const linkWhatsApp = `https://wa.me/${nomorWhatsApp}?text=${encodeURIComponent(pesan)}`;
                 window.open(linkWhatsApp, '_blank');
             });
 
-            // [BARU] Logika untuk Menu Hamburger Mobile
             const hamburgerBtn = document.getElementById('hamburger-btn');
             const mobileNav = document.getElementById('mobile-nav');
             const closeMobileNavBtn = document.getElementById('close-mobile-nav-btn');
@@ -537,33 +480,21 @@
             const mobileCartCount = document.getElementById('mobile-cart-count');
             const mobileSearchInput = document.getElementById('mobile-search-input');
             
-            // Buka menu
-            hamburgerBtn.addEventListener('click', () => {
-                mobileNav.classList.add('is-open');
-            });
-
-            // Tutup menu
-            closeMobileNavBtn.addEventListener('click', () => {
-                mobileNav.classList.remove('is-open');
-            });
+            hamburgerBtn.addEventListener('click', () => mobileNav.classList.add('is-open'));
+            closeMobileNavBtn.addEventListener('click', () => mobileNav.classList.remove('is-open'));
             
-            // Hubungkan search bar mobile dengan fungsi search utama
             mobileSearchInput.addEventListener('input', (e) => {
                 const searchTerm = e.target.value.toLowerCase();
-                const filteredProducts = products.filter(product => 
-                    product.name.toLowerCase().includes(searchTerm)
-                );
+                const filteredProducts = products.filter(p => p.name.toLowerCase().includes(searchTerm));
                 renderProducts(filteredProducts);
             });
 
-            // Buka panel keranjang dari menu mobile
             mobileCartLink.addEventListener('click', (e) => {
                 e.preventDefault();
-                mobileNav.classList.remove('is-open'); // Tutup menu nav
-                cartPanel.classList.add('open'); // Buka panel keranjang
+                mobileNav.classList.remove('is-open');
+                cartPanel.classList.add('open');
             });
 
-            // Inisialisasi Aplikasi
             loadCartFromLocalStorage();
             renderProducts(products);
             updateCartDisplay();
