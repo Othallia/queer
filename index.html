@@ -14,10 +14,12 @@
     <header class="main-header">
         <nav class="main-nav">
             <a href="index.html" class="logo">PRI<span class="glitch" data-text="SMA">SMA</span>TIK</a>
+            
             <ul class="nav-links">
                 <li><a href="#products">Shop</a></li>
                 <li><a href="#site-footer">About Us</a></li>
             </ul>
+
             <div class="nav-icons">
                 <div class="search-container">
                     <input type="text" id="search-input" class="search-input" placeholder="Cari t-shirt, pin...">
@@ -29,9 +31,37 @@
                     🛒
                     <span id="cart-count" class="cart-count">0</span>
                 </button>
+                
+                <button id="hamburger-btn" class="hamburger-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
             </div>
         </nav>
     </header>
+
+    <div id="mobile-nav" class="mobile-nav">
+        <div class="mobile-nav-header">
+            <a href="index.html" class="logo">PRISMATIK</a>
+            <button id="close-mobile-nav-btn" class="close-mobile-nav-btn">&times;</button>
+        </div>
+        <div class="mobile-nav-content">
+            <div class="mobile-search-container">
+                 <input type="text" id="mobile-search-input" class="search-input" placeholder="Cari t-shirt, pin...">
+                 <button id="mobile-search-btn" class="search-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                 </button>
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="#products">Shop</a></li>
+                <li><a href="#site-footer">About Us</a></li>
+                <li><a href="#" id="mobile-cart-link">Keranjang (<span id="mobile-cart-count">0</span>)</a></li>
+            </ul>
+        </div>
+    </div>
 
     <main>
         <section class="hero-section">
@@ -416,6 +446,9 @@
                 cartCountEl.style.display = count > 0 ? 'flex' : 'none';
 
                 saveCartToLocalStorage();
+
+                // [BARU] Tambahan untuk update counter di menu mobile
+                mobileCartCount.textContent = count;
             }
             
             searchInput.addEventListener('input', (e) => {
@@ -486,7 +519,7 @@
                     if(item.size) detailPesanan += ` (Ukuran: ${item.size})`;
                     if(item.color) detailPesanan += ` (Warna: ${item.color})`;
                     
-                    pesan += `${detailPesanan}\n  Jumlah: ${item.quantity} x Rp ${item.price.toLocaleString('id-ID')}\n  Subtotal: Rp ${subtotal.toLocaleString('id-ID')}\n\n`;
+                    pesan += `${detailPesanan}\n   Jumlah: ${item.quantity} x Rp ${item.price.toLocaleString('id-ID')}\n   Subtotal: Rp ${subtotal.toLocaleString('id-ID')}\n\n`;
                     totalBelanja += subtotal;
                 });
 
@@ -494,6 +527,40 @@
 
                 const linkWhatsApp = `https://wa.me/${nomorWhatsApp}?text=${encodeURIComponent(pesan)}`;
                 window.open(linkWhatsApp, '_blank');
+            });
+
+            // [BARU] Logika untuk Menu Hamburger Mobile
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileNav = document.getElementById('mobile-nav');
+            const closeMobileNavBtn = document.getElementById('close-mobile-nav-btn');
+            const mobileCartLink = document.getElementById('mobile-cart-link');
+            const mobileCartCount = document.getElementById('mobile-cart-count');
+            const mobileSearchInput = document.getElementById('mobile-search-input');
+            
+            // Buka menu
+            hamburgerBtn.addEventListener('click', () => {
+                mobileNav.classList.add('is-open');
+            });
+
+            // Tutup menu
+            closeMobileNavBtn.addEventListener('click', () => {
+                mobileNav.classList.remove('is-open');
+            });
+            
+            // Hubungkan search bar mobile dengan fungsi search utama
+            mobileSearchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const filteredProducts = products.filter(product => 
+                    product.name.toLowerCase().includes(searchTerm)
+                );
+                renderProducts(filteredProducts);
+            });
+
+            // Buka panel keranjang dari menu mobile
+            mobileCartLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                mobileNav.classList.remove('is-open'); // Tutup menu nav
+                cartPanel.classList.add('open'); // Buka panel keranjang
             });
 
             // Inisialisasi Aplikasi
