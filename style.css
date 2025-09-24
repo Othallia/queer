@@ -796,11 +796,11 @@ body {
     background: none;
     border: none;
     color: white;
-    font-size: 40px;     /* Sedikit lebih besar */
+    font-size: 60px;     
     cursor: pointer;
-    padding: 15px;       /* Menambah AREA SENTUH di sekeliling 'X' */
-    line-height: 0.5;    /* Menyesuaikan posisi vertikal 'X' agar pas di tengah */
-    font-weight: normal; /* Membuat 'X' sedikit lebih ramping & modern */
+    padding: 15px;       
+    line-height: 0.5;    
+    font-weight: normal; 
 }
 
 .mobile-nav-content {
