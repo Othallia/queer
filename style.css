@@ -230,14 +230,14 @@ body {
 }
 
 /* ==================================================
-   FILTER KATEGORI (KODE BARU)
+   FILTER KATEGORI
    ================================================== */
 .category-filters {
     display: flex;
     justify-content: center;
     gap: 15px;
     margin-bottom: 40px;
-    flex-wrap: wrap; /* Agar rapi di mobile */
+    flex-wrap: wrap; 
 }
 
 .filter-btn {
@@ -545,11 +545,27 @@ body {
 }
 
 .cart-item {
+    display: flex; /* [DIUBAH] Menggunakan flexbox untuk alignment */
+    align-items: center; /* [BARU] Menyejajarkan checkbox dan detail item */
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+/* [BARU] Styling untuk checkbox */
+.cart-item-checkbox {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--cyber-pink);
+    flex-shrink: 0; /* Mencegah checkbox mengecil */
+}
+
+/* [BARU] Wrapper untuk detail agar bisa tumbuh */
+.cart-item-details-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 20px;
-    gap: 15px;
+    flex-grow: 1;
+    gap: 10px;
 }
 
 .cart-item-info {

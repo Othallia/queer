@@ -151,10 +151,10 @@
         </div>
         <div class="cart-footer">
             <div class="cart-total">
-                <strong>Total:</strong>
+                <strong>Total Dipilih:</strong>
                 <span id="cart-total-price">Rp 0</span>
             </div>
-            <button class="btn btn-primary checkout-btn">Checkout</button>
+            <button class="btn btn-primary checkout-btn">Checkout Item Terpilih</button>
         </div>
     </div>
 
@@ -258,18 +258,13 @@
             const modalColors = document.getElementById('modal-product-colors');
             const modalAddToCartBtn = document.getElementById('modal-add-to-cart-btn');
 
-            // [BARU] Logika untuk Filter Kategori
             const categoryFilters = document.getElementById('category-filters');
 
             categoryFilters.addEventListener('click', (e) => {
                 if (e.target.classList.contains('filter-btn')) {
-                    categoryFilters.querySelectorAll('.filter-btn').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
+                    categoryFilters.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
                     e.target.classList.add('active');
-
                     const selectedCategory = e.target.dataset.category;
-
                     if (selectedCategory === 'all') {
                         renderProducts(products);
                     } else {
@@ -296,7 +291,6 @@
                     const productCard = document.createElement('div');
                     productCard.className = 'product-card';
                     productCard.dataset.productId = product.id;
-                    
                     productCard.innerHTML = `
                         <img class="product-image" src="${product.imageSrc}" alt="${product.name}">
                         <h3 class="product-name">${product.name}</h3>
@@ -363,17 +357,27 @@
                 } else {
                     cart.push({
                         cartId: cartItemId, id: product.id, name: product.name,
-                        price: product.price, quantity: 1, size: size, color: color
+                        price: product.price, quantity: 1, size: size, color: color,
+                        selected: true // [BARU] Setiap item baru otomatis terpilih
                     });
                 }
                 updateCartDisplay();
                 modal.style.display = 'none';
             }
+            
+            function updateCartTotal() {
+                let total = 0;
+                const selectedItems = cart.filter(item => item.selected);
+                selectedItems.forEach(item => {
+                    total += item.price * item.quantity;
+                });
+                cartTotalEl.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+            }
 
             function updateCartDisplay() {
                 cartItemsContainer.innerHTML = '';
-                let total = 0;
                 let count = 0;
+
                 if (cart.length === 0) {
                     cartItemsContainer.innerHTML = '<p class="empty-cart-message">Keranjang Anda kosong.</p>';
                 } else {
@@ -383,27 +387,34 @@
                         let details = '';
                         if (item.size) details += `<span>Ukuran: ${item.size}</span>`;
                         if (item.color) details += `<span>Warna: ${item.color}</span>`;
+                        
+                        // [BARU] HTML untuk item keranjang dengan checkbox
                         itemEl.innerHTML = `
-                            <div class="cart-item-info">
-                                <span class="item-name">${item.name}</span>
-                                <div class="item-details">${details}</div>
-                            </div>
-                            <div class="cart-item-actions">
-                                <span class="item-price">Rp ${(item.price * item.quantity).toLocaleString('id-ID')}</span>
-                                <div class="item-quantity">
-                                    <button class="quantity-btn" data-cartid="${item.cartId}" data-action="decrease">-</button>
-                                    <span>${item.quantity}</span>
-                                    <button class="quantity-btn" data-cartid="${item.cartId}" data-action="increase">+</button>
+                            <input type="checkbox" class="cart-item-checkbox" data-cartid="${item.cartId}" ${item.selected ? 'checked' : ''}>
+                            <div class="cart-item-details-wrapper">
+                                <div class="cart-item-info">
+                                    <span class="item-name">${item.name}</span>
+                                    <div class="item-details">${details}</div>
                                 </div>
-                            </div>`;
+                                <div class="cart-item-actions">
+                                    <span class="item-price">Rp ${(item.price * item.quantity).toLocaleString('id-ID')}</span>
+                                    <div class="item-quantity">
+                                        <button class="quantity-btn" data-cartid="${item.cartId}" data-action="decrease">-</button>
+                                        <span>${item.quantity}</span>
+                                        <button class="quantity-btn" data-cartid="${item.cartId}" data-action="increase">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
                         cartItemsContainer.appendChild(itemEl);
-                        total += item.price * item.quantity;
                         count += item.quantity;
                     });
                 }
-                cartTotalEl.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+                
                 cartCountEl.textContent = count;
                 cartCountEl.style.display = count > 0 ? 'flex' : 'none';
+                
+                updateCartTotal(); // Kalkulasi total berdasarkan item terpilih
                 saveCartToLocalStorage();
                 mobileCartCount.textContent = count;
             }
@@ -437,30 +448,51 @@
             closeCartBtn.addEventListener('click', () => cartPanel.classList.remove('open'));
 
             cartItemsContainer.addEventListener('click', (e) => {
-                if (!e.target.classList.contains('quantity-btn')) return;
-                const cartId = e.target.dataset.cartid;
-                const action = e.target.dataset.action;
-                const item = cart.find(i => i.cartId === cartId);
-                if (!item) return;
-                if (action === 'increase') {
-                    item.quantity++;
-                } else if (action === 'decrease') {
-                    item.quantity--;
+                const target = e.target;
+                
+                // Jika yang diklik adalah tombol kuantitas
+                if (target.classList.contains('quantity-btn')) {
+                    const cartId = target.dataset.cartid;
+                    const action = target.dataset.action;
+                    const item = cart.find(i => i.cartId === cartId);
+                    if (!item) return;
+
+                    if (action === 'increase') {
+                        item.quantity++;
+                    } else if (action === 'decrease') {
+                        item.quantity--;
+                    }
+
+                    if (item.quantity <= 0) {
+                        cart = cart.filter(i => i.cartId !== cartId);
+                    }
+                    updateCartDisplay();
                 }
-                if (item.quantity <= 0) {
-                    cart = cart.filter(i => i.cartId !== cartId);
+
+                // [BARU] Jika yang diklik adalah checkbox
+                if (target.classList.contains('cart-item-checkbox')) {
+                    const cartId = target.dataset.cartid;
+                    const item = cart.find(i => i.cartId === cartId);
+                    if(item) {
+                        item.selected = target.checked;
+                        updateCartTotal();
+                        saveCartToLocalStorage();
+                    }
                 }
-                updateCartDisplay();
             });
 
             checkoutBtn.addEventListener('click', () => {
-                if (cart.length === 0) {
-                    alert('Keranjang Anda masih kosong!');
+                const selectedItems = cart.filter(item => item.selected);
+
+                if (selectedItems.length === 0) {
+                    alert('Pilih dulu item yang ingin Anda checkout!');
                     return;
                 }
+
                 let pesan = 'Halo Prismatik, saya mau pesan barang berikut:\n\n';
                 let totalBelanja = 0;
-                cart.forEach(item => {
+
+                selectedItems.forEach(item => {
                     const subtotal = item.price * item.quantity;
                     let detailPesanan = `- *${item.name}*`;
                     if(item.size) detailPesanan += ` (Ukuran: ${item.size})`;
